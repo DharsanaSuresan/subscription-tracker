@@ -34,6 +34,19 @@ export const api = {
       body: JSON.stringify(data)
     }).then(r => r.json()),
 
+  updateSubscription: (id, data) =>
+    fetch(`${BASE_URL}/api/V1/subscriptions/${id}`, {
+      method: 'PUT',
+      headers: headers(),
+      body: JSON.stringify(data)
+    }).then(r => r.json()),
+
+  deleteSubscription: (id) =>
+    fetch(`${BASE_URL}/api/V1/subscriptions/${id}`, {
+      method: 'DELETE',
+      headers: headers()
+    }).then(r => r.json()),
+
   getUser: (userId) =>
     fetch(`${BASE_URL}/api/V1/users/${userId}`, {
       headers: headers()
