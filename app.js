@@ -17,7 +17,7 @@ app.use(cookieParser())
 //   credentials: true
 // }));
 app.use(cors({
-  origin: ['https://radiant-gelato-a25f96.netlify.app', 'http://localhost:3000'],
+  origin: ['https://subscriptiontracker-api.netlify.app', 'http://localhost:3000'],
   credentials: true
 }));
 ///api/V1/auth/sing-up
