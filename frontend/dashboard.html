@@ -5,12 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SubTrack — Dashboard</title>
   <link rel="stylesheet" href="css/style.css"/>
+  <script>
+    const t = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  </script>
 </head>
 <body>
   <nav class="nav">
     <a href="dashboard.html" class="nav-logo">SubTrack</a>
-    <div class="nav-user">
+    <div class="nav-right">
       <span class="nav-name" id="nav-name"></span>
+      <div class="theme-toggle-wrap">
+        <span class="theme-label" id="theme-label">☀️</span>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"></button>
+      </div>
       <button class="btn-sm btn-ghost" id="logout-btn">Sign out</button>
     </div>
   </nav>

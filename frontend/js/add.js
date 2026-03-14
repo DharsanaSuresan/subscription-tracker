@@ -1,15 +1,15 @@
 import { api } from './api.js';
+import { initTheme } from './theme.js';
 
-if (!localStorage.getItem('token')) {
-  window.location.href = 'index.html';
-}
+initTheme();
 
+if (!localStorage.getItem('token')) window.location.href = 'index.html';
+
+document.getElementById('nav-name').textContent = localStorage.getItem('userName') || 'User';
 document.getElementById('logout-btn').addEventListener('click', () => {
   localStorage.clear();
   window.location.href = 'index.html';
 });
-
-document.getElementById('nav-name').textContent = localStorage.getItem('userName') || 'User';
 
 const alertEl   = document.getElementById('alert');
 const submitBtn = document.getElementById('submit-btn');
@@ -43,7 +43,7 @@ document.getElementById('add-form').addEventListener('submit', async (e) => {
     } else {
       showAlert(res.message || 'Failed to add subscription');
     }
-  } catch (err) {
+  } catch {
     showAlert('Connection error. Try again.');
   } finally {
     submitBtn.disabled = false;

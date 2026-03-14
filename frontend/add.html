@@ -5,12 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SubTrack — Add Subscription</title>
   <link rel="stylesheet" href="css/style.css"/>
+  <script>
+    const t = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  </script>
 </head>
 <body>
   <nav class="nav">
     <a href="dashboard.html" class="nav-logo">SubTrack</a>
-    <div class="nav-user">
+    <div class="nav-right">
       <span class="nav-name" id="nav-name"></span>
+      <div class="theme-toggle-wrap">
+        <span class="theme-label" id="theme-label">☀️</span>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"></button>
+      </div>
       <button class="btn-sm btn-ghost" id="logout-btn">Sign out</button>
     </div>
   </nav>
@@ -29,7 +37,6 @@
           <label for="name">Service name</label>
           <input type="text" id="name" placeholder="Netflix, Spotify, GitHub…" required/>
         </div>
-
         <div class="form-row">
           <div class="form-group">
             <label for="price">Price</label>
@@ -48,7 +55,6 @@
             </select>
           </div>
         </div>
-
         <div class="form-row">
           <div class="form-group">
             <label for="frequency">Billing frequency</label>
@@ -72,17 +78,14 @@
             </select>
           </div>
         </div>
-
         <div class="form-group">
           <label for="paymentMethod">Payment method</label>
           <input type="text" id="paymentMethod" placeholder="Visa •••• 4242, PayPal…" required/>
         </div>
-
         <div class="form-group">
           <label for="startDate">Start date</label>
           <input type="date" id="startDate" required/>
         </div>
-
         <button type="submit" class="btn-primary" id="submit-btn">Add subscription</button>
       </form>
     </div>

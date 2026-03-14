@@ -5,13 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SubTrack — Sign in</title>
   <link rel="stylesheet" href="css/style.css"/>
+  <script>
+    // Prevent flash of wrong theme
+    const t = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  </script>
 </head>
 <body>
   <div class="auth-wrap">
     <div class="auth-card">
+      <div class="auth-header">
+        <div>
+          <h1 class="auth-title" id="auth-title">Welcome back</h1>
+          <p class="auth-subtitle" id="auth-subtitle">Sign in to your account</p>
+        </div>
+        <div class="theme-toggle-wrap">
+          <span class="theme-label" id="theme-label">☀️</span>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"></button>
+        </div>
+      </div>
+
       <div id="alert" class="alert"></div>
-      <h1 class="auth-title" id="auth-title">Welcome back</h1>
-      <p class="auth-subtitle" id="auth-subtitle">Sign in to your account</p>
 
       <form id="auth-form" novalidate>
         <div class="form-group" id="name-group" style="display:none">

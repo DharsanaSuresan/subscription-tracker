@@ -1,38 +1,29 @@
 import { api } from './api.js';
+import { initTheme } from './theme.js';
 
-// Guard: redirect if not logged in
-const token  = localStorage.getItem('token');
-const userId = localStorage.getItem('userId');
+initTheme();
+
+const token    = localStorage.getItem('token');
+const userId   = localStorage.getItem('userId');
 const userName = localStorage.getItem('userName') || 'User';
 
-if (!token || !userId) {
-  window.location.href = 'index.html';
-}
+if (!token || !userId) window.location.href = 'index.html';
 
-// Set user name in nav
 document.getElementById('nav-name').textContent = userName;
-
-// Logout
 document.getElementById('logout-btn').addEventListener('click', () => {
   localStorage.clear();
   window.location.href = 'index.html';
 });
 
-// Render subscriptions
 async function loadSubscriptions() {
   const container = document.getElementById('subs-container');
-
   try {
     const res = await api.getSubscriptions(userId);
-
     if (!res.success) {
       container.innerHTML = `<p style="color:var(--danger)">Failed to load subscriptions.</p>`;
       return;
     }
-
     const subs = res.data;
-
-    // Stats
     const active = subs.filter(s => s.status === 'Active');
     const totalMonthly = active.reduce((sum, s) => {
       const amt = s.frequency === 'Yearly' ? s.price / 12
@@ -56,10 +47,8 @@ async function loadSubscriptions() {
         </div>`;
       return;
     }
-
     container.innerHTML = `<div class="subs-grid">${subs.map(subCard).join('')}</div>`;
-
-  } catch (err) {
+  } catch {
     container.innerHTML = `<p style="color:var(--danger)">Error loading data.</p>`;
   }
 }
@@ -67,8 +56,8 @@ async function loadSubscriptions() {
 function subCard(s) {
   const renewal = s.renewalDate ? new Date(s.renewalDate).toLocaleDateString() : '—';
   const start   = s.startDate   ? new Date(s.startDate).toLocaleDateString()   : '—';
-  const badge   = s.status === 'Active'    ? 'badge-active'
-                : s.status === 'Expired'   ? 'badge-expired'
+  const badge   = s.status === 'Active'  ? 'badge-active'
+                : s.status === 'Expired' ? 'badge-expired'
                 : 'badge-cancelled';
   return `
     <div class="sub-card">
@@ -76,7 +65,7 @@ function subCard(s) {
         <span class="sub-name">${s.name}</span>
         <span class="sub-category">${s.category}</span>
       </div>
-      <div class="sub-price">${s.currency || '$'}${s.price}</div>
+      <div class="sub-price">${s.currency || 'USD'} ${s.price}</div>
       <div class="sub-frequency">per ${(s.frequency || 'month').toLowerCase()}</div>
       <div class="sub-meta">
         <span><span>Status</span><span class="badge ${badge}">${s.status}</span></span>
