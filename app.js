@@ -43,4 +43,20 @@ app.listen(PORT || 3000, async () => {
     await connectToDatabase();
 });
 
+// Keep-alive ping (prevents Railway free tier sleep)
+const SELF_URL = process.env.RAILWAY_PUBLIC_DOMAIN 
+  ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}/` 
+  : null;
+
+if (SELF_URL) {
+  setInterval(async () => {
+    try {
+      await fetch(SELF_URL);
+      console.log('Keep-alive ping sent');
+    } catch (e) {
+      console.error('Keep-alive ping failed:', e.message);
+    }
+  }, 14 * 60 * 1000); // every 14 minutes
+}
+
 export default app;
