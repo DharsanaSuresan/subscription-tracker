@@ -12,8 +12,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser())
+// app.use(cors({
+//   origin: ['https://your-netlify-url.netlify.app', 'http://localhost:3000'],
+//   credentials: true
+// }));
 app.use(cors({
-  origin: ['https://your-netlify-url.netlify.app', 'http://localhost:3000'],
+  origin: ['https://radiant-gelato-a25f96.netlify.app', 'http://localhost:3000'],
   credentials: true
 }));
 ///api/V1/auth/sing-up
