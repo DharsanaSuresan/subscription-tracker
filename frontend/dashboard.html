@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SubTrack — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <nav class="nav">
+    <a href="dashboard.html" class="nav-logo">SubTrack</a>
+    <div class="nav-user">
+      <span class="nav-name" id="nav-name"></span>
+      <button class="btn-sm btn-ghost" id="logout-btn">Sign out</button>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="dash-header">
+      <div>
+        <h1 class="dash-title">My subscriptions</h1>
+        <p class="dash-subtitle">Track and manage everything in one place</p>
+      </div>
+      <a href="add.html" class="btn-add">+ Add subscription</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Total</div>
+        <div class="stat-value accent" id="stat-total">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Active</div>
+        <div class="stat-value" id="stat-active">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Monthly cost</div>
+        <div class="stat-value accent" id="stat-monthly">—</div>
+      </div>
+    </div>
+
+    <div id="subs-container">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
